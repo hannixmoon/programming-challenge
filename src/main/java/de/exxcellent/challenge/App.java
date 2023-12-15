@@ -1,5 +1,6 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.calculator.WeatherCalculator;
 import de.exxcellent.challenge.reader.CsvReader;
 
 import java.util.List;
@@ -20,11 +21,19 @@ public final class App {
      */
     public static void main(String... args) {
 
-        String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
-        System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
+        // Task 1: Weather
         String weatherFilePath = "src/main/resources/de/exxcellent/challenge/weather.csv";
         List<Map<String, String>> weatherHashmap = CsvReader.readCsvFile(weatherFilePath);
+        try {
+            Map<String, String> dayWithSmallestTempSpread = WeatherCalculator.calcDayWithSmallestTempSpread(weatherHashmap);
+            System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread.get(WeatherCalculator.DAY_COLUMN));
 
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        // Task 2: Football
         String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
         System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
     }

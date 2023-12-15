@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WeatherCalculatorTest {
 
-    @Disabled
     @Test
     public void testCalcDayWithSmallestTempSpread() {
         Map<String, String> weatherMap1 = new HashMap<>();

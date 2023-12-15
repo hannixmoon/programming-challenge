@@ -31,7 +31,7 @@ public class CsvReader {
             dataList = convertCsvToMap(csvData);
         } catch (IOException | CsvException e) {
             System.err.println("Error reading CSV file: " + e.getMessage());
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         return dataList;
     }
