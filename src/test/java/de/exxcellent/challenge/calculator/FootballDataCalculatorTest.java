@@ -20,8 +20,8 @@ public class FootballDataCalculatorTest {
 
         Map<String, String> footballMap2 = new HashMap<>();
         footballMap2.put("Team", "Liverpool");
-        footballMap2.put("Goals", "67");
-        footballMap2.put("Goals Allowed", "30");
+        footballMap2.put("Goals", "30");
+        footballMap2.put("Goals Allowed", "67");
 
         List<Map<String, String>> footballData = new ArrayList<>();
         footballData.add(footballMap1);

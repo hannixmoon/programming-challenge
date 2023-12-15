@@ -1,5 +1,6 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.calculator.FootballDataCalculator;
 import de.exxcellent.challenge.calculator.WeatherDataCalculator;
 import de.exxcellent.challenge.reader.CsvReader;
 
@@ -20,22 +21,29 @@ public final class App {
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
+        String baseFilePath = "src/main/resources/de/exxcellent/challenge/";
+        String weatherFilePath = baseFilePath + "weather.csv";
+        String footballFilePath = baseFilePath + "football.csv";
 
-        // Task 1: Weather
-        String weatherFilePath = "src/main/resources/de/exxcellent/challenge/weather.csv";
         List<Map<String, String>> weatherHashmap = CsvReader.readCsvFile(weatherFilePath);
+        List<Map<String, String>> footballHashMap = CsvReader.readCsvFile(footballFilePath);
+
         try {
-            WeatherDataCalculator weatherDataCalculator = new WeatherDataCalculator();
+            // Task 1: Weather data
+            var weatherDataCalculator = new WeatherDataCalculator();
             Map<String, String> dayWithSmallestTempSpread = weatherDataCalculator.calcDataWithMinSpread(weatherHashmap);
-            System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread.get(WeatherDataCalculator.DAY_COLUMN));
+            System.out.printf("Day with smallest temperature spread : %s%n",
+                    dayWithSmallestTempSpread.get(WeatherDataCalculator.DAY_COLUMN));
+
+            // Task 2: Football data
+            var footballDataCalculator = new FootballDataCalculator();
+            Map<String, String> teamWithSmallestGoalSpread = footballDataCalculator.calcDataWithMinSpread(footballHashMap);
+            System.out.printf("Team with smallest goal spread       : %s%n",
+                    teamWithSmallestGoalSpread.get(FootballDataCalculator.TEAM_COLUMN));
 
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
-
-        // Task 2: Football
-        String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
-        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
     }
 }
