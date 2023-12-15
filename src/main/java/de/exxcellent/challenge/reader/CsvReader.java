@@ -12,6 +12,12 @@ import java.util.Map;
 
 public class CsvReader {
 
+    /**
+     * Reads a CSV file and converts its contents into a List of Maps.
+     *
+     * @param csvFilePath The path to the CSV file.
+     * @return A List of Maps representing the CSV data.
+     */
     public static List<Map<String, String>> readCsvFile(String csvFilePath) {
         List<Map<String, String>> dataList = new ArrayList<>();
 
@@ -25,11 +31,17 @@ public class CsvReader {
             dataList = convertCsvToMap(csvData);
         } catch (IOException | CsvException e) {
             System.err.println("Error reading CSV file: " + e.getMessage());
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return dataList;
     }
 
+    /**
+     * Converts CSV data, excluding headers, into a List of Maps.
+     *
+     * @param csvData List of String arrays representing CSV rows.
+     * @return A List of Maps representing the CSV data.
+     */
     public static List<Map<String, String>> convertCsvToMap(List<String[]> csvData) {
         List<Map<String, String>> dataList = new ArrayList<>();
 
