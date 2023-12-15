@@ -3,13 +3,14 @@ package de.exxcellent.challenge.calculator;
 import java.util.List;
 import java.util.Map;
 
-public class WeatherCalculator {
+public class WeatherDataCalculator implements DataCalculator{
 
     public static final String DAY_COLUMN = "Day";
     public static final String MAX_TEMP_COLUMN = "MxT";
     public static final String MIN_TEMP_COLUMN = "MnT";
 
-    public static Map<String, String> calcDayWithSmallestTempSpread(List<Map<String, String>> weatherData) {
+    @Override
+    public Map<String, String> calcDataWithMinSpread(List<Map<String, String>> weatherData) {
         if (weatherData == null || weatherData.isEmpty()) {
             throw new IllegalArgumentException("The list of weather data is empty");
         }

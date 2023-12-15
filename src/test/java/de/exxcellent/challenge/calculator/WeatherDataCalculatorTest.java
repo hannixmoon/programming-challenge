@@ -1,6 +1,5 @@
 package de.exxcellent.challenge.calculator;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,10 +9,10 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class WeatherCalculatorTest {
+public class WeatherDataCalculatorTest {
 
     @Test
-    public void testCalcDayWithSmallestTempSpread() {
+    public void testCalcDataWithMinSpread() {
         Map<String, String> weatherMap1 = new HashMap<>();
         weatherMap1.put("Day", "1");
         weatherMap1.put("MxT", "88");
@@ -28,7 +27,7 @@ public class WeatherCalculatorTest {
         weatherData.add(weatherMap1);
         weatherData.add(weatherMap2);
 
-        Map<String, String> result = WeatherCalculator.calcDayWithSmallestTempSpread(weatherData);
+        Map<String, String> result = new WeatherDataCalculator().calcDataWithMinSpread(weatherData);
 
         assertNotNull(result);
         assertFalse(result.isEmpty());
