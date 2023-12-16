@@ -6,6 +6,8 @@ import de.exxcellent.challenge.reader.CsvFileReader;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
@@ -21,6 +23,8 @@ public final class App {
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
+        Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
         String baseFilePath = "src/main/resources/de/exxcellent/challenge/";
         String weatherFilePath = baseFilePath + "weather.csv";
         String footballFilePath = baseFilePath + "football.csv";
@@ -34,8 +38,7 @@ public final class App {
                     dayWithSmallestTempSpread.get(WeatherDataCalculator.DAY_COLUMN));
 
         } catch (IllegalArgumentException e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error while handling weather data");
         }
 
         // Task 2: Football data
@@ -47,8 +50,7 @@ public final class App {
                     teamWithSmallestGoalSpread.get(FootballDataCalculator.TEAM_COLUMN));
 
         } catch (IllegalArgumentException e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error while handling football data");
         }
     }
 }

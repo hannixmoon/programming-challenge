@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CsvFileReader implements de.exxcellent.challenge.reader.FileReader {
+
+    private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
      * Reads a CSV file and converts its contents into a List of Maps.
@@ -30,8 +34,7 @@ public class CsvFileReader implements de.exxcellent.challenge.reader.FileReader 
 
             dataList = convertCsvToMap(csvData);
         } catch (IOException | CsvException e) {
-            System.err.println("Error reading CSV file: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error reading CSV file: " + e.getMessage());
         }
         return dataList;
     }
@@ -51,7 +54,7 @@ public class CsvFileReader implements de.exxcellent.challenge.reader.FileReader 
         for (int i = 1; i < csvData.size(); i++) {
             String[] row = csvData.get(i);
             if (row.length != headers.length) {
-                System.err.println("Mismatched number of columns in a row. Skipping the row.");
+                logger.log(Level.WARNING, "Mismatched number of columns in a row. Skipping the row.");
                 continue;
             }
             Map<String, String> rowMap = new HashMap<>();
