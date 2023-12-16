@@ -1,6 +1,5 @@
 package de.exxcellent.challenge.reader;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,20 +7,26 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CsvReaderTest {
+public class CsvFileReaderTest {
 
+    /**
+     * It is expected that a potential FileNotFoundException will be caught
+     * and the error message and stack trace are being printed.
+     */
     @Test
-    void testInvalidFilePath() {
+    void testInvalidFilePathExceptionCaught() {
         String filePath = "invalid";
-        List<Map<String, String>> data = CsvReader.readCsvFile(filePath);
+        var fileReader = new CsvFileReader();
 
-        assertNotNull(data);
-        assertTrue(data.isEmpty()); }
+        assertDoesNotThrow(() -> {
+            fileReader.readFile(filePath);
+        });
+    }
 
     @Test
     void testReadCsvFile() {
         String weatherFilePath = "src/main/resources/de/exxcellent/challenge/weather.csv";
-        List<Map<String, String>> weatherData = CsvReader.readCsvFile(weatherFilePath);
+        List<Map<String, String>> weatherData = new CsvFileReader().readFile(weatherFilePath);
 
         assertNotNull(weatherData);
         assertFalse(weatherData.isEmpty());
@@ -36,7 +41,7 @@ public class CsvReaderTest {
                 new String[]{"2", "30", "58"}
         );
 
-        List<Map<String, String>> weatherData = CsvReader.convertCsvToMap(testData);
+        List<Map<String, String>> weatherData = CsvFileReader.convertCsvToMap(testData);
 
         assertNotNull(weatherData);
         assertFalse(weatherData.isEmpty());

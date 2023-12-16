@@ -3,11 +3,12 @@ package de.exxcellent.challenge.calculator;
 import java.util.List;
 import java.util.Map;
 
-public class FootballDataCalculator implements DataCalculator{
+public class FootballDataCalculator implements DataCalculator {
 
     public static final String TEAM_COLUMN = "Team";
     public static final String GOALS_COLUMN = "Goals";
     public static final String GOALS_ALLOWED_COLUMN = "Goals Allowed";
+
     @Override
     public Map<String, String> calcDataWithMinSpread(List<Map<String, String>> data) {
         if (data == null || data.isEmpty()) {

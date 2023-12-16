@@ -3,7 +3,7 @@ package de.exxcellent.challenge.calculator;
 import java.util.List;
 import java.util.Map;
 
-public class WeatherDataCalculator implements DataCalculator{
+public class WeatherDataCalculator implements DataCalculator {
 
     public static final String DAY_COLUMN = "Day";
     public static final String MAX_TEMP_COLUMN = "MxT";

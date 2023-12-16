@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CsvReader {
+public class CsvFileReader implements de.exxcellent.challenge.reader.FileReader {
 
     /**
      * Reads a CSV file and converts its contents into a List of Maps.
@@ -18,7 +18,7 @@ public class CsvReader {
      * @param csvFilePath The path to the CSV file.
      * @return A List of Maps representing the CSV data.
      */
-    public static List<Map<String, String>> readCsvFile(String csvFilePath) {
+    public List<Map<String, String>> readFile(String csvFilePath) {
         List<Map<String, String>> dataList = new ArrayList<>();
 
         try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {

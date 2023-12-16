@@ -2,7 +2,7 @@ package de.exxcellent.challenge;
 
 import de.exxcellent.challenge.calculator.FootballDataCalculator;
 import de.exxcellent.challenge.calculator.WeatherDataCalculator;
-import de.exxcellent.challenge.reader.CsvReader;
+import de.exxcellent.challenge.reader.CsvFileReader;
 
 import java.util.List;
 import java.util.Map;
@@ -25,19 +25,24 @@ public final class App {
         String weatherFilePath = baseFilePath + "weather.csv";
         String footballFilePath = baseFilePath + "football.csv";
 
-        List<Map<String, String>> weatherHashmap = CsvReader.readCsvFile(weatherFilePath);
-        List<Map<String, String>> footballHashMap = CsvReader.readCsvFile(footballFilePath);
-
+        // Task 1: Weather data
         try {
-            // Task 1: Weather data
-            var weatherDataCalculator = new WeatherDataCalculator();
-            Map<String, String> dayWithSmallestTempSpread = weatherDataCalculator.calcDataWithMinSpread(weatherHashmap);
+            List<Map<String, String>> weatherDataList = new CsvFileReader().readFile(weatherFilePath);
+            WeatherDataCalculator weatherDataCalculator = new WeatherDataCalculator();
+            Map<String, String> dayWithSmallestTempSpread = weatherDataCalculator.calcDataWithMinSpread(weatherDataList);
             System.out.printf("Day with smallest temperature spread : %s%n",
                     dayWithSmallestTempSpread.get(WeatherDataCalculator.DAY_COLUMN));
 
-            // Task 2: Football data
-            var footballDataCalculator = new FootballDataCalculator();
-            Map<String, String> teamWithSmallestGoalSpread = footballDataCalculator.calcDataWithMinSpread(footballHashMap);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        // Task 2: Football data
+        try {
+            List<Map<String, String>> footballDataList = new CsvFileReader().readFile(footballFilePath);
+            FootballDataCalculator footballDataCalculator = new FootballDataCalculator();
+            Map<String, String> teamWithSmallestGoalSpread = footballDataCalculator.calcDataWithMinSpread(footballDataList);
             System.out.printf("Team with smallest goal spread       : %s%n",
                     teamWithSmallestGoalSpread.get(FootballDataCalculator.TEAM_COLUMN));
 
