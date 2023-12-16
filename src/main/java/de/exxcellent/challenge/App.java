@@ -1,5 +1,6 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.calculator.DataCalculator;
 import de.exxcellent.challenge.calculator.FootballDataCalculator;
 import de.exxcellent.challenge.calculator.WeatherDataCalculator;
 import de.exxcellent.challenge.reader.CsvFileReader;
@@ -32,7 +33,7 @@ public final class App {
         // Task 1: Weather data
         try {
             List<Map<String, String>> weatherDataList = new CsvFileReader().readFile(weatherFilePath);
-            WeatherDataCalculator weatherDataCalculator = new WeatherDataCalculator();
+            DataCalculator weatherDataCalculator = new WeatherDataCalculator();
             Map<String, String> dayWithSmallestTempSpread = weatherDataCalculator.calcDataWithMinSpread(weatherDataList);
             System.out.printf("Day with smallest temperature spread : %s%n",
                     dayWithSmallestTempSpread.get(WeatherDataCalculator.DAY_COLUMN));
@@ -44,7 +45,7 @@ public final class App {
         // Task 2: Football data
         try {
             List<Map<String, String>> footballDataList = new CsvFileReader().readFile(footballFilePath);
-            FootballDataCalculator footballDataCalculator = new FootballDataCalculator();
+            DataCalculator footballDataCalculator = new FootballDataCalculator();
             Map<String, String> teamWithSmallestGoalSpread = footballDataCalculator.calcDataWithMinSpread(footballDataList);
             System.out.printf("Team with smallest goal spread       : %s%n",
                     teamWithSmallestGoalSpread.get(FootballDataCalculator.TEAM_COLUMN));

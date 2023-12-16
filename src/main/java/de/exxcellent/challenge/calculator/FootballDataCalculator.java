@@ -3,12 +3,23 @@ package de.exxcellent.challenge.calculator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The FootballDataCalculator class implements the DataCalculator interface
+ * to calculate football-related statistics from a list of data maps.
+ */
 public class FootballDataCalculator implements DataCalculator {
 
     public static final String TEAM_COLUMN = "Team";
     public static final String GOALS_COLUMN = "Goals";
     public static final String GOALS_ALLOWED_COLUMN = "Goals Allowed";
 
+    /**
+     * Calculates the team data with the smallest (absolut) goal difference.
+     * @param data A list of football data maps.
+     * @return The team data map with the smallest goal difference.
+     * @throws IllegalArgumentException If the input data list is null or empty or
+     * if the columns for "Goals" or "Goals Allowed" are missing in the data maps.
+     */
     @Override
     public Map<String, String> calcDataWithMinSpread(List<Map<String, String>> data) {
         if (data == null || data.isEmpty()) {

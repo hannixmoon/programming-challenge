@@ -11,6 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FootballDataCalculatorTest {
 
+    /**
+     * Unit test for the FootballDataCalculator's calcDataWithMinSpread method.
+     * It tests whether the method correctly calculates the team with the minimum goal difference
+     * from a list of football data maps.
+     * The test creates a list of football data maps, each representing a team's goal information.
+     * It then calls the calcDataWithMinSpread method and asserts that the result matches the expected team's data.
+     */
     @Test
     public void testCalcDataWithMinSpread() {
         Map<String, String> footballMap1 = new HashMap<>();

@@ -11,6 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WeatherDataCalculatorTest {
 
+    /**
+     * Unit test for the WeatherDataCalculator's calcDataWithMinSpread method.
+     * It tests whether the method correctly calculates the day with the minimum temperature spread
+     * from a list of weather data maps.
+     * The test creates a list of weather data maps, each representing a day's temperature information.
+     * It then calls the calcDataWithMinSpread method and asserts that the result matches the expected day's data.
+     */
     @Test
     public void testCalcDataWithMinSpread() {
         Map<String, String> weatherMap1 = new HashMap<>();
